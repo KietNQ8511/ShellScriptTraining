@@ -64,12 +64,101 @@ echo "scale=2;22/7" | bc
 
 read variable_name
 # declare variable x = variable just read
-x=$$((variable_name))
+x=$((variable_name))
 
+# Numeric comparison logical operators
+# Comparison is used to check if statements evaluate to true or false.
+# We can use the below shown operators to compare two statements
+# Equality				num1 -eq num2		is num1 equals to num2
+# Greater than equal to 	num1 -ge num2		is num1 greater than equals to num2
+# Greater than			num1 -gt num2		is num1 greater than num2
+# Less than equals 		num1 -le num2		is num1 less than equal to num2
+# Less than				num1 -lt num2		is num1 less than num2
+# Not Equal to			num1 -ne num2		is num1 not equal to num2
+if[conditions]
+	then
+		commands
+fi
 
+"""
+Let's compare two numbers and find their relationship:
 
+read x
+read y
+if [$x -gt $y]
+then
+echo X is greater than Y
+elif [$x -lt $y]
+then
+echo X is less than Y
+elif [$x -eq $y]
+then
+echo X is equal to Y
+fi
+"""
 
+# Conditonal statement (Decision making)
+# Conditions are expressions that evaluate to a boolean expression (true or false).
+# To check conditions, we can us if, if-else, if-elif-else and nested conditionals.
 
+# The structure of conditional state is as follows:
+# if...then...fi #statement
+# if...then...else...fi
+# if...elif...else...fi
+# if..then..else..if..then..fi..fi.. (Nested conditionals)
+
+if [condition]
+then
+	statement
+elif [condition]; then 
+	statement
+else
+	do this by default
+fi
+
+# to create meaningful comparisons, we can use AND (-a) and OR (-o) as well.
+# the below statement translates to: If a is greater than 40 and b is less than 6
+# Example: Let's find the triangle type by reading the lengths of its sides
+
+# Looping and skipping
+# For loops allow you to execute statements a specific number of times
+# Looping with numbers:
+# in the example below, the loop will iterate 5 times.
+
+for i in {1..5}
+do 
+	echo $i
+done
+
+# Loop with strings
+for X in cyan magenta yellow
+do
+	echo $X
+done
+#
+
+# while loop
+# while loops check for a condition and loop until the condition remains true. 
+# We need to provide a counter statement that increments the counter to control loop execution.
+# In the example below, ((i += 1)) is the counter statement that increments the value of i.
+"""
+i = 1
+while [[$i -le 10 ]] ; do
+echo "$i"
+(( i += 1 ))
+done
+"""
+
+# READ FILE
+# we can read the file line by line and print the output on the screen.
+# 
+"""
+while read -r CURRENT_LINE
+	do
+		echo "$LINE: $CURRENT_LINE"
+    ((LINE++))
+done < "sample_file.txt"    # sample_file.txt can change with full file path
+"""
 
 
 
