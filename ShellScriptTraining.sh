@@ -160,22 +160,55 @@ while read -r CURRENT_LINE
 done < "sample_file.txt"    # sample_file.txt can change with full file path
 """
 
+# How to execute commands with back ticks
+# If you need to include the output of a complex command in your script, you can write statement inside back ticks
+# Syntax:
+var=`commands`
+# Example: suppose we want to get the output of a list of mountpoints with tmpfs in their name. We can craft a statement like this: df -h | grep tmpfs.
+# To include it in the bash script, we can enclose it in back ticks.
+
+var=`df -h | grep tmpfs`
+
+echo $var
+
+# How to get arguments for scripts from the command line
+# It is possible to give arguments to the script on exeution
+# $@ represents the position of the parameters, starting from one.
+
+for x in $@
+do
+	echo "Entered arg is $x"
+done
+
+# then run above script like this:
+./script arg1 arg2
+
+# how to automate scripts by scheduling via cron Jobs
+# Cron is a job scheduling utility present in Unix like system,
+# you can schedule jobs to execute daily weekly, monthly or in a specific time of the day. 
+# Automation in Linux heavily relies on cron jobs.
+
+# Below is the syntax to schedule crons:
+"""
+# Cron job example
+* * * * * sh /path/to/script.sh
+"""
+
+# Here, * represents minute(s) hour(s) day(s) month(s) weekday(s), respectively.
 
 
+# how to check existing scripts in a system
+# crontab -l lists the already scheduled scripts for a particular user
+***** sh /opt/modules/health_check.sh
+*/5**** sh /home/root/health_check.sh
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Using the find command 
+# the find command helps to locate files based on certain pattern. 
+# As most of the scripts end with .sh, we can use the find script like this.
+find . -type f -name "*.sh"
+. represent for current directory. You can change the path accordingly.
+-type f indicates that the file type we are looking for is a text based file.
+*.sh tells to match all files ending with .sh.
 
 
 
