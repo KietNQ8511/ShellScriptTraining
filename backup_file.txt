@@ -1,4 +1,6 @@
 Here's an example of a Bash script for automating a repetitive task, such as backing up files:
+ D\:workbk/backup_2024-02-25_17-29-13.tar.gz: Cannot open: Input/output error
+tar (child): Error is not recoverable: exiting now
 
 ```bash
 #!/bin/bash
@@ -14,7 +16,7 @@ timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
 if [ ! -d "$destination_dir" ]; then
     mkdir -p "$destination_dir"
 fi
-
+# backup_file="$destination_dir//backup_$timestamp.tar.gz"
 # Create a compressed archive of the source directory
 backup_file="$destination_dir/backup_$timestamp.tar.gz"
 tar -czf "$backup_file" "$source_dir"
