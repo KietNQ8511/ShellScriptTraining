@@ -1,0 +1,42 @@
+Here's an example of a Bash script for automating a repetitive task, such as backing up files:
+
+```bash
+#!/bin/bash
+
+# Define source and destination directories
+source_dir="/path/to/source"
+destination_dir="/path/to/backup"
+
+# Create a timestamp for the backup file
+timestamp=$(date +"%Y-%m-%d_%H-%M-%S")
+
+# Create a backup directory if it doesn't exist
+if [ ! -d "$destination_dir" ]; then
+    mkdir -p "$destination_dir"
+fi
+
+# Create a compressed archive of the source directory
+backup_file="$destination_dir/backup_$timestamp.tar.gz"
+tar -czf "$backup_file" "$source_dir"
+
+# Check if the backup was successful
+if [ $? -eq 0 ]; then
+    echo "Backup completed successfully: $backup_file"
+else
+    echo "Backup failed!"
+fi
+```
+
+This script automates the task of creating a backup of a specified source directory. Here's how it works:
+
+1. **Define Source and Destination Directories:** Set the source directory (`source_dir`) containing the files to be backed up and the destination directory (`destination_dir`) where the backup will be saved.
+
+2. **Create Timestamp:** Generate a timestamp to be used in the backup file name, ensuring each backup has a unique identifier.
+
+3. **Create Backup Directory:** Check if the destination directory exists. If not, create it.
+
+4. **Create Compressed Archive:** Create a compressed tar archive (`tar.gz`) of the source directory and save it in the destination directory with the timestamp appended to the filename.
+
+5. **Check Backup Status:** Verify if the backup operation was successful by checking the exit status of the `tar` command. If successful, print a success message; otherwise, print an error message.
+
+You can save this script in a file (e.g., `backup_script.sh`), make it executable (`chmod +x backup_script.sh`), and then run it whenever you want to automate the backup process.
